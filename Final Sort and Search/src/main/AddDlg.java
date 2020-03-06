@@ -25,9 +25,9 @@ public class AddDlg extends GBDialog {
 	IntegerField soldNum = addIntegerField(0, 2,2,1,1);
 	
 	int id;
-	ArrayList<Object> list;
+	ArrayList<Comparable> list;
 
-	public AddDlg(JFrame frm, int i, ArrayList<Object> li) {
+	public AddDlg(JFrame frm, int i, ArrayList<Comparable> li) {
 		super(frm);
 		nameLbl.setVisible(false);
 		name.setVisible(false);

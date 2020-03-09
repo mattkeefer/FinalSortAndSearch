@@ -9,6 +9,11 @@ public class Widget implements Comparable {
 		setProdNum(i);
 		setNumSold(j);
 	}
+	
+	public Widget() {
+		prodNum = 999;
+		numSold = 0;
+	}
 
 	public int getProdNum() {
 		return prodNum;
@@ -34,5 +39,12 @@ public class Widget implements Comparable {
 			return -1;
 		}
 		return 0;
+	}
+	
+	public String[] getInfo() {
+		String[] out = new String[2];
+		out[0] = String.format("%d", prodNum);
+		out[1] = String.format("%d", numSold);
+		return out;
 	}
 }

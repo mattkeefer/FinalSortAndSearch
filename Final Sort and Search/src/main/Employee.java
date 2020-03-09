@@ -10,6 +10,11 @@ public class Employee implements Comparable {
 		salary = d;
 	}
 	
+	public Employee() {
+		name = "";
+		salary = 0;
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -34,5 +39,12 @@ public class Employee implements Comparable {
 			return -1;
 		}
 		return 0;
+	}
+	
+	public String[] getInfo() {
+		String[] out = new String[2];
+		out[0] = name;
+		out[1] = String.format("$%.2f", salary);
+		return out;
 	}
 }

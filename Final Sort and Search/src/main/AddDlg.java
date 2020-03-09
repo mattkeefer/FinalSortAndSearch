@@ -79,7 +79,7 @@ public class AddDlg extends GBDialog {
 				list.add(e);
 			}
 			else if(id==1) {
-				Student s = new Student(name.getText(), gpa.getNumber());
+				Student s = new Student(name1.getText(), gpa.getNumber());
 				list.add(s);
 			}
 			else {

@@ -9,6 +9,11 @@ public class Student implements Comparable {
 		setName(str);
 		setGpa(d);
 	}
+	
+	public Student() {
+		name = "";
+		gpa = 5;
+	}
 
 	public String getName() {
 		return name;
@@ -28,5 +33,12 @@ public class Student implements Comparable {
 	
 	public int compareTo(Object obj) {
 		return ((Student)(obj)).getName().compareTo(name);
+	}
+	
+	public String[] getInfo() {
+		String[] out = new String[2];
+		out[0] = name;
+		out[1] = String.format("%.3f", gpa);
+		return out;
 	}
 }

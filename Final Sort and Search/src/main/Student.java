@@ -6,8 +6,8 @@ public class Student implements Comparable {
 	private double gpa;
 	
 	public Student(String str, double d) {
-		setName(str);
-		setGpa(d);
+		name = str;
+		gpa = d;
 	}
 	
 	public Student() {
@@ -32,7 +32,7 @@ public class Student implements Comparable {
 	}
 	
 	public int compareTo(Object obj) {
-		return ((Student)(obj)).getName().compareTo(name);
+		return name.compareTo(((Student)(obj)).getName());
 	}
 	
 	public String[] getInfo() {

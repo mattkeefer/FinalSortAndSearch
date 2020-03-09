@@ -1,6 +1,5 @@
 package main;
 import BreezySwing.*;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -32,14 +31,6 @@ public class SickNastyUI extends GBFrame {
 	private char lastViewed;
 	
 	public SickNastyUI() {
-		addEmp.setBackground(new Color(237, 221, 202));
-		addStu.setBackground(new Color(237, 221, 202));
-		addWid.setBackground(new Color(237, 221, 202));
-		addEmp.setForeground(new Color(173, 42, 28));
-		addStu.setForeground(new Color(173, 42, 28));
-		addWid.setForeground(new Color(173, 42, 28));
-		pop.setBackground(new Color(237, 221, 202));
-		pop.setForeground(new Color(173, 42, 28));
 		selSort.setEnabled(false);
 		insSort.setEnabled(false);
 		list = new ArrayList<>();
@@ -109,17 +100,22 @@ public class SickNastyUI extends GBFrame {
 			insSort.setEnabled(true);
 		}
 		if(item == pop) {
-			list.add(new Employee("Bob", 4500));
-			list.add(new Employee("Alex", 9780));
-			list.add(new Employee("John", 1200));
-			list.add(new Student("Adam", 3.956));
-			list.add(new Student("Adam", 2.565));
-			list.add(new Student("Zach", 4.144));
-			list.add(new Widget(235, 2784));
-			list.add(new Widget(457, 6436));
-			list.add(new Widget(935, 1767));
-			selSort.setEnabled(true);
-			insSort.setEnabled(true);
+			try {
+				list.add(new Employee("Bob", 4500));
+				list.add(new Employee("Alex", 9780));
+				list.add(new Employee("John", 1200));
+				list.add(new Student("Adam", 3.956));
+				list.add(new Student("Zach", 4.144));
+				list.add(new Student("Adam", 2.565));
+				list.add(new Widget("235", 2784));
+				list.add(new Widget("457", 6436));
+				list.add(new Widget("935", 1767));
+				selSort.setEnabled(true);
+				insSort.setEnabled(true);
+			}
+			catch(FormatException e) {
+				messageBox(e.getMessage());
+			}
 		}
 		if(item == viewEmp) {
 			String[] columnNames = {"Name", "Salary"};

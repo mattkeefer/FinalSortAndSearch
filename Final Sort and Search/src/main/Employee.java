@@ -33,10 +33,10 @@ public class Employee implements Comparable {
 	
 	public int compareTo(Object obj) {
 		if(salary>((Employee)(obj)).getSalary()) {
-			return 1;
+			return -1;
 		}
 		if(salary<((Employee)(obj)).getSalary()) {
-			return -1;
+			return 1;
 		}
 		return 0;
 	}

@@ -20,7 +20,7 @@ public class AddDlg extends GBDialog {
 	DoubleField gpa = addDoubleField(0, 2,2,1,1);
 	
 	JLabel prodLbl = addLabel("Product Number:", 1,1,1,1);
-	IntegerField prodNum = addIntegerField(0, 1,2,1,1);
+	JTextField prodNum = addTextField("", 1,2,1,1);
 	JLabel soldLbl = addLabel("Number Sold:", 2,1,1,1);
 	IntegerField soldNum = addIntegerField(0, 2,2,1,1);
 	
@@ -51,6 +51,7 @@ public class AddDlg extends GBDialog {
 			name.setVisible(true);
 			salaryLbl.setVisible(true);
 			salary.setVisible(true);
+			salary.setText("");
 		}
 		else if(i==1) {
 			setTitle("Add Student");
@@ -58,6 +59,7 @@ public class AddDlg extends GBDialog {
 			name1.setVisible(true);
 			gpaLbl.setVisible(true);
 			gpa.setVisible(true);
+			gpa.setText("");
 		}
 		else {
 			setTitle("Add Widget");
@@ -65,6 +67,7 @@ public class AddDlg extends GBDialog {
 			prodNum.setVisible(true);
 			soldLbl.setVisible(true);
 			soldNum.setVisible(true);
+			soldNum.setText("");
 		}
 		id = i;
 		list = li;
@@ -77,16 +80,23 @@ public class AddDlg extends GBDialog {
 			if(id==0) {
 				Employee e = new Employee(name.getText(), salary.getNumber());
 				list.add(e);
+				dispose();
 			}
 			else if(id==1) {
 				Student s = new Student(name1.getText(), gpa.getNumber());
 				list.add(s);
+				dispose();
 			}
 			else {
-				Widget w = new Widget(prodNum.getNumber(), soldNum.getNumber());
-				list.add(w);
+				try {
+					Widget w = new Widget(prodNum.getText().trim(), soldNum.getNumber());
+					list.add(w);
+					dispose();
+				}
+				catch(FormatException e) {
+					messageBox(e.getMessage());
+				}
 			}
-			dispose();
 		}
 		if(button == exit) {
 			dispose();

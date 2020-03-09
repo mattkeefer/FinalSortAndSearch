@@ -1,6 +1,7 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class SortSearch {
 
@@ -9,7 +10,7 @@ public class SortSearch {
 	//have the sort methods pass in an array of Comparable and the number of items in the array
 	
 	//selection sort
-	public ArrayList<Comparable> selectionSort(ArrayList<Comparable> a, int n) {
+	public static ArrayList<Comparable> selectionSort(ArrayList<Comparable> a, int n) {
 		for(int i=0; i<n-1; i++) {
 			int max = i;
 			for(int j=i+1; j<n; j++) {
@@ -27,7 +28,7 @@ public class SortSearch {
 	}
 	
 	//insertion sort
-	public ArrayList<Comparable> insertionSort(ArrayList<Comparable> a, int n) {
+	public static ArrayList<Comparable> insertionSort(ArrayList<Comparable> a, int n) {
 		int hole;
 		Comparable val;
 		for(int i=1; i<n; i++) {
@@ -39,13 +40,12 @@ public class SortSearch {
 			}
 			a.set(hole, val);
 		}
-		ArrayList<Comparable> temp = new ArrayList<>();
-		for(int i=n-1; i>=0; i--) {
-			temp.set(i, a.get(n-i-1));
-		}
-		a = temp;
 		return a;
 	}
 	
+	//sequential search
+	
+	
+	//binary search
 	
 }

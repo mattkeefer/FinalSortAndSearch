@@ -44,7 +44,33 @@ public class SortSearch {
 	}
 	
 	//sequential search
-	
+	public static ArrayList<Comparable> linearSearch(String n, ArrayList<Comparable> a, char c) {
+		ArrayList<Comparable> result = new ArrayList<>();
+		Comparable comp = null;
+		for(int i=0; i<a.size(); i++) {
+			switch(c) {
+			case 'E':
+				if(((Employee)(a.get(i))).equals(n)) {
+					result.add(a.get(i));
+				}
+				break;
+			case 'S':
+				if(((Student)(a.get(i))).equals(n)) {
+					result.add(a.get(i));
+				}
+				break;
+			case 'W':
+				if(((Widget)(a.get(i))).equals(n)) {
+					result.add(a.get(i));
+				}
+				break;
+			}
+		}
+		if(result.size()>0) {
+			return result;
+		}
+		return null;
+	}
 	
 	//binary search
 	

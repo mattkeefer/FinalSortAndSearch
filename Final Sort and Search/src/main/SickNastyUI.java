@@ -20,6 +20,11 @@ public class SickNastyUI extends GBFrame {
 	
 	JButton selSort = addButton("Selection Sort", 2,1,2,1);
 	JButton insSort = addButton("Insertion Sort", 2,3,2,1);
+	JLabel spacer = addLabel("reeee", 3,1,1,1);
+	JLabel searchLbl = addLabel("Search:", 4,1,1,1);
+	JTextField search = addTextField("", 4,2,3,1);
+	JButton linSearch = addButton("Sequential Search", 5,1,2,1);
+	JButton binSearch = addButton("Binary Search", 5,3,2,1);
 	
 	JPanel output = addPanel(1,1,4,1);
 	JTable table = null;
@@ -34,6 +39,7 @@ public class SickNastyUI extends GBFrame {
 		selSort.setEnabled(false);
 		insSort.setEnabled(false);
 		list = new ArrayList<>();
+		spacer.setForeground(new Color(237, 221, 202));
 		
 		String[] columnNames = {"", ""};
 		data = new String[25][5];
@@ -77,6 +83,20 @@ public class SickNastyUI extends GBFrame {
 			if(lastViewed == 'W') {
 				updateTable(s.insertionSort(getWidgets(), getWidgets().size()));
 			}
+		}
+		if(button == linSearch) {
+			if(lastViewed == 'E') {
+				updateTable(s.linearSearch(search.getText().trim(), getEmployees(), 'E'));
+			}
+			if(lastViewed == 'S') {
+				updateTable(s.linearSearch(search.getText().trim(), getStudents(), 'S'));
+			}
+			if(lastViewed == 'W') {
+				updateTable(s.linearSearch(search.getText().trim(), getWidgets(), 'W'));
+			}
+		}
+		if(button == binSearch) {
+			
 		}
 	}
 	

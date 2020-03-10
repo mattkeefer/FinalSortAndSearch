@@ -57,4 +57,8 @@ public class Widget implements Comparable {
 		out[1] = String.format("%d", numSold);
 		return out;
 	}
+	
+	public boolean equals(String s) {
+		return s.equals(prodNum);
+	}
 }

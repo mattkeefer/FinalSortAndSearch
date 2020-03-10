@@ -41,4 +41,8 @@ public class Student implements Comparable {
 		out[1] = String.format("%.3f", gpa);
 		return out;
 	}
+	
+	public boolean equals(String s) {
+		return s.toLowerCase().equals(name.toLowerCase());
+	}
 }

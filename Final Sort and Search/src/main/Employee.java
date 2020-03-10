@@ -47,4 +47,9 @@ public class Employee implements Comparable {
 		out[1] = String.format("$%.2f", salary);
 		return out;
 	}
+	
+	public boolean equals(String s) {
+		double d = Double.parseDouble(s);
+		return d == salary;
+	}
 }

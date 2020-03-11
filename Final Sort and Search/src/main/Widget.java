@@ -17,7 +17,12 @@ public class Widget implements Comparable {
 		else {
 			throw new FormatException("Product number must be of length 3.");
 		}
-		numSold = j;
+		if(numSold<0) {
+			throw new FormatException("Units sold cannot be negative.");
+		}
+		else {
+			numSold = j;
+		}
 	}
 	
 	public Widget() {

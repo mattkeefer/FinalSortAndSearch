@@ -44,9 +44,11 @@ public class SortSearch {
 	}
 	
 	//sequential search
-	public static ArrayList<Comparable> linearSearch(String n, ArrayList<Comparable> a, char c) {
+	public static ArrayList<Comparable> linearSearch(String n, ArrayList<Comparable> a, char c) throws FormatException {
+		if(n.trim().equals("")) {
+			throw new FormatException("Please enter search information in search box.");
+		}
 		ArrayList<Comparable> result = new ArrayList<>();
-		Comparable comp = null;
 		for(int i=0; i<a.size(); i++) {
 			switch(c) {
 			case 'E':
@@ -69,9 +71,82 @@ public class SortSearch {
 		if(result.size()>0) {
 			return result;
 		}
-		return null;
+		throw new FormatException("Search unsuccessful.");
 	}
 	
 	//binary search
-	
+	public ArrayList<Comparable> binarySearch(String n, ArrayList<Comparable> a, char c, Comparable input) throws FormatException {
+		if(n.trim().equals("")) {
+			throw new FormatException("Please enter search information in search box.");
+		}
+		ArrayList<Comparable> result = new ArrayList<>();
+		ArrayList<Comparable> arr = new ArrayList<>(selectionSort(a, a.size()));
+		int start = 0;
+		int end = arr.size()-1;
+		int mid = (end-start)/2;
+		switch(c) {
+		case 'E':
+			while(start <= end) {
+				if(((Employee)(arr.get(mid))).compareTo(input) < 0) {
+					start = mid + 1;
+				}
+				else if(((Employee)(arr.get(mid))).compareTo(input) > 0) {
+					end = mid - 1;
+				}
+				else {
+					result.add(arr.get(mid));
+					arr.remove(mid);
+					start = 0;
+					end = arr.size()-1;
+					mid = (start+end)/2;
+					continue;
+				}
+				mid = (start+end)/2;
+			}
+			break;
+		case 'S':
+			while(start <= end) {
+				if(((Student)(arr.get(mid))).compareTo(input) < 0) {
+					start = mid + 1;
+				}
+				else if(((Student)(arr.get(mid))).compareTo(input) > 0) {
+					end = mid - 1;
+				}
+				else {
+					result.add(arr.get(mid));
+					arr.remove(mid);
+					start = 0;
+					end = arr.size()-1;
+					mid = (start+end)/2;
+					continue;
+				}
+				mid = (start+end)/2;
+			}
+			break;
+		case 'W':
+			while(start <= end) {
+				if(((Widget)(arr.get(mid))).compareTo(input) < 0) {
+					start = mid + 1;
+				}
+				else if(((Widget)(arr.get(mid))).compareTo(input) > 0) {
+					end = mid - 1;
+				}
+				else {
+					result.add(arr.get(mid));
+					arr.remove(mid);
+					start = 0;
+					end = arr.size()-1;
+					mid = (start+end)/2;
+					continue;
+				}
+				mid = (start+end)/2;
+			}
+			break;
+		}
+		
+		if(result.size()>0) {
+			return result;
+		}
+		throw new FormatException("Search unsuccessful.");
+	}
 }

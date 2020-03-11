@@ -5,9 +5,19 @@ public class Employee implements Comparable {
 	private String name;
 	private double salary;
 	
-	public Employee(String str, double d) {
-		name = str;
-		salary = d;
+	public Employee(String str, double d) throws FormatException {
+		if(str.trim().equals("")) {
+			throw new FormatException("Please enter a name.");
+		}
+		else {
+			name = str;
+		}
+		if(d<0) {
+			throw new FormatException("Salary cannot be negative.");
+		}
+		else {
+			salary = d;
+		}
 	}
 	
 	public Employee() {
@@ -48,8 +58,13 @@ public class Employee implements Comparable {
 		return out;
 	}
 	
-	public boolean equals(String s) {
-		double d = Double.parseDouble(s);
-		return d == salary;
+	public boolean equals(String s) throws FormatException {
+		try {
+			double d = Double.parseDouble(s);
+			return d == salary;
+		}
+		catch(NumberFormatException e) {
+			throw new FormatException("Search unsuccessful.");
+		}
 	}
 }

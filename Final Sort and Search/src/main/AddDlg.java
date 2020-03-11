@@ -78,14 +78,24 @@ public class AddDlg extends GBDialog {
 	public void buttonClicked(JButton button) {
 		if(button == add) {
 			if(id==0) {
-				Employee e = new Employee(name.getText(), salary.getNumber());
-				list.add(e);
-				dispose();
+				try {
+					Employee e = new Employee(name.getText(), salary.getNumber());
+					list.add(e);
+					dispose();
+				}
+				catch(FormatException e) {
+					messageBox(e.getMessage());
+				}
 			}
 			else if(id==1) {
-				Student s = new Student(name1.getText(), gpa.getNumber());
-				list.add(s);
-				dispose();
+				try {
+					Student s = new Student(name1.getText(), gpa.getNumber());
+					list.add(s);
+					dispose();
+				}
+				catch(FormatException e) {
+					messageBox(e.getMessage());
+				}
 			}
 			else {
 				try {

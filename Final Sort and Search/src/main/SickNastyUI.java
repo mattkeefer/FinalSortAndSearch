@@ -12,9 +12,9 @@ public class SickNastyUI extends GBFrame {
 	JMenuItem addEmp = addMenuItem("Add", "Employee");
 	JMenuItem addStu = addMenuItem("Add", "Student");
 	JMenuItem addWid = addMenuItem("Add", "Widget");
-	JMenuItem viewEmp = addMenuItem("View", "Employee");
-	JMenuItem viewStu = addMenuItem("View", "Student");
-	JMenuItem viewWid = addMenuItem("View", "Widget");
+	JMenuItem viewEmp = addMenuItem("View", "Employees");
+	JMenuItem viewStu = addMenuItem("View", "Students");
+	JMenuItem viewWid = addMenuItem("View", "Widgets");
 	
 	JMenuItem pop = addMenuItem("Add", "Populate"); //populate menu item
 	
@@ -38,6 +38,9 @@ public class SickNastyUI extends GBFrame {
 	public SickNastyUI() {
 		selSort.setEnabled(false);
 		insSort.setEnabled(false);
+		search.setEnabled(false);
+		linSearch.setEnabled(false);
+		binSearch.setEnabled(false);
 		list = new ArrayList<>();
 		spacer.setForeground(new Color(237, 221, 202));
 		
@@ -85,39 +88,72 @@ public class SickNastyUI extends GBFrame {
 			}
 		}
 		if(button == linSearch) {
-			if(lastViewed == 'E') {
-				updateTable(s.linearSearch(search.getText().trim(), getEmployees(), 'E'));
+			try {
+				if(lastViewed == 'E') {
+					updateTable(s.linearSearch(search.getText().trim(), getEmployees(), 'E'));
+				}
+				if(lastViewed == 'S') {
+					updateTable(s.linearSearch(search.getText().trim(), getStudents(), 'S'));
+				}
+				if(lastViewed == 'W') {
+					updateTable(s.linearSearch(search.getText().trim(), getWidgets(), 'W'));
+				}
 			}
-			if(lastViewed == 'S') {
-				updateTable(s.linearSearch(search.getText().trim(), getStudents(), 'S'));
-			}
-			if(lastViewed == 'W') {
-				updateTable(s.linearSearch(search.getText().trim(), getWidgets(), 'W'));
+			catch(FormatException e) {
+				messageBox(e.getMessage());
 			}
 		}
 		if(button == binSearch) {
-			
+			try {
+				if(lastViewed == 'E') {
+					updateTable(s.binarySearch(search.getText().trim(), getEmployees(), 'E', new Employee(search.getText(), 0)));
+				}
+				if(lastViewed == 'S') {
+					updateTable(s.binarySearch(search.getText().trim(), getStudents(), 'S', new Student(search.getText(), 0)));
+				}
+				if(lastViewed == 'W') {
+					updateTable(s.binarySearch(search.getText().trim(), getWidgets(), 'W', new Widget(search.getText(), 0)));
+				}
+			}
+			catch(FormatException e) {
+				messageBox(e.getMessage());
+			}
 		}
 	}
 	
 	public void menuItemSelected(JMenuItem item ) {
 		if(item == addEmp) {
 			AddDlg ad = new AddDlg(this, 0, list);
-			updateTable(getEmployees());
+			if(lastViewed == 'E') {
+				updateTable(getEmployees());
+			}
 			selSort.setEnabled(true);
 			insSort.setEnabled(true);
+			search.setEnabled(true);
+			linSearch.setEnabled(true);
+			binSearch.setEnabled(true);
 		}
 		if(item == addStu) {
 			AddDlg ad = new AddDlg(this, 1, list);
-			updateTable(getStudents());
+			if(lastViewed == 'S') {
+				updateTable(getStudents());
+			}
 			selSort.setEnabled(true);
 			insSort.setEnabled(true);
+			search.setEnabled(true);
+			linSearch.setEnabled(true);
+			binSearch.setEnabled(true);
 		}
 		if(item == addWid) {
 			AddDlg ad = new AddDlg(this, 2, list);
-			updateTable(getWidgets());
+			if(lastViewed == 'W') {
+				updateTable(getWidgets());
+			}
 			selSort.setEnabled(true);
 			insSort.setEnabled(true);
+			search.setEnabled(true);
+			linSearch.setEnabled(true);
+			binSearch.setEnabled(true);
 		}
 		if(item == pop) {
 			try {
@@ -132,6 +168,9 @@ public class SickNastyUI extends GBFrame {
 				list.add(new Widget("935", 1767));
 				selSort.setEnabled(true);
 				insSort.setEnabled(true);
+				search.setEnabled(true);
+				linSearch.setEnabled(true);
+				binSearch.setEnabled(true);
 			}
 			catch(FormatException e) {
 				messageBox(e.getMessage());

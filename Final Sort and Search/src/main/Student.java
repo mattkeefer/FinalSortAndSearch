@@ -5,14 +5,24 @@ public class Student implements Comparable {
 	private String name;
 	private double gpa;
 	
-	public Student(String str, double d) {
-		name = str;
-		gpa = d;
+	public Student(String str, double d) throws FormatException {
+		if(str.trim().equals("")) {
+			throw new FormatException("Please enter a name.");
+		}
+		else {
+			name = str;
+		}
+		if(d<0 || d>5) {
+			throw new FormatException("GPA must be between 0-5.");
+		}
+		else {
+			gpa = d;
+		}
 	}
 	
 	public Student() {
 		name = "";
-		gpa = 5;
+		gpa = 0;
 	}
 
 	public String getName() {

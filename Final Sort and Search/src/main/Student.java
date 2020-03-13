@@ -42,7 +42,7 @@ public class Student implements Comparable {
 	}
 	
 	public int compareTo(Object obj) {
-		return name.compareTo(((Student)(obj)).getName());
+		return getName().toLowerCase().compareTo(((Student)(obj)).getName().toLowerCase());
 	}
 	
 	public String[] getInfo() {

@@ -46,7 +46,7 @@ public class SortSearch {
 	//sequential search
 	public static ArrayList<Comparable> linearSearch(String n, ArrayList<Comparable> a, char c) throws FormatException {
 		if(n.trim().equals("")) {
-			throw new FormatException("Please enter search information in search box.");
+			throw new FormatException("Please enter search information.");
 		}
 		ArrayList<Comparable> result = new ArrayList<>();
 		for(int i=0; i<a.size(); i++) {
@@ -75,7 +75,7 @@ public class SortSearch {
 	}
 	
 	//binary search
-	public ArrayList<Comparable> binarySearch(String n, ArrayList<Comparable> a, char c, Comparable input) throws FormatException {
+	public ArrayList<Comparable> binarySearch(String n, ArrayList<Comparable> a, char c, Comparable<Employee> input) throws FormatException {
 		if(n.trim().equals("")) {
 			throw new FormatException("Please enter search information in search box.");
 		}
@@ -83,70 +83,41 @@ public class SortSearch {
 		ArrayList<Comparable> arr = new ArrayList<>(selectionSort(a, a.size()));
 		int start = 0;
 		int end = arr.size()-1;
-		int mid = (end-start)/2;
-		switch(c) {
-		case 'E':
-			while(start <= end) {
-				if(((Employee)(arr.get(mid))).compareTo(input) < 0) {
-					start = mid + 1;
-				}
-				else if(((Employee)(arr.get(mid))).compareTo(input) > 0) {
-					end = mid - 1;
-				}
-				else {
-					result.add(arr.get(mid));
-					arr.remove(mid);
-					start = 0;
-					end = arr.size()-1;
-					mid = (start+end)/2;
-					continue;
-				}
-				mid = (start+end)/2;
+		int s;
+		
+		while(start <= end) {
+			int mid = (end+start)/2;
+			if(compareClass(arr.get(mid), input, c) == 0) {
+				result.add(arr.get(mid));
+				arr.remove(mid);
+				start = 0;
+				end = arr.size()-1;
 			}
-			break;
-		case 'S':
-			while(start <= end) {
-				if(((Student)(arr.get(mid))).compareTo(input) < 0) {
-					start = mid + 1;
-				}
-				else if(((Student)(arr.get(mid))).compareTo(input) > 0) {
-					end = mid - 1;
-				}
-				else {
-					result.add(arr.get(mid));
-					arr.remove(mid);
-					start = 0;
-					end = arr.size()-1;
-					mid = (start+end)/2;
-					continue;
-				}
-				mid = (start+end)/2;
+			else if(compareClass(arr.get(mid), input, c) < 0) {
+				start = mid + 1;
 			}
-			break;
-		case 'W':
-			while(start <= end) {
-				if(((Widget)(arr.get(mid))).compareTo(input) < 0) {
-					start = mid + 1;
-				}
-				else if(((Widget)(arr.get(mid))).compareTo(input) > 0) {
-					end = mid - 1;
-				}
-				else {
-					result.add(arr.get(mid));
-					arr.remove(mid);
-					start = 0;
-					end = arr.size()-1;
-					mid = (start+end)/2;
-					continue;
-				}
-				mid = (start+end)/2;
+			else if(compareClass(arr.get(mid), input, c) > 0) {
+				end = mid - 1;
 			}
-			break;
 		}
 		
-		if(result.size()>0) {
+		if(result.size() > 0) {
 			return result;
 		}
-		throw new FormatException("Search unsuccessful.");
+		else {
+			throw new FormatException("Search unsuccessful.");
+		}
+	}
+		
+	private int compareClass(Comparable a, Comparable b, char c) {
+		if(c == 'E') {
+			return ((Employee)(a)).compareTo(b);
+		}
+		else if(c == 'S') {
+			return ((Student)(a)).compareTo(b);
+		}
+		else {
+			return ((Widget)(a)).compareTo(b);
+		}
 	}
 }

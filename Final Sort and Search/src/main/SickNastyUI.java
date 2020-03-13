@@ -106,13 +106,23 @@ public class SickNastyUI extends GBFrame {
 		if(button == binSearch) {
 			try {
 				if(lastViewed == 'E') {
-					updateTable(s.binarySearch(search.getText().trim(), getEmployees(), 'E', new Employee(search.getText(), 0)));
+					try {
+						updateTable(s.binarySearch(search.getText().trim(), getEmployees(), 'E', new Employee("name", Double.parseDouble(search.getText()))));
+					}
+					catch(NumberFormatException e) {
+						throw new FormatException("Please enter a valid double.");
+					}
 				}
 				if(lastViewed == 'S') {
 					updateTable(s.binarySearch(search.getText().trim(), getStudents(), 'S', new Student(search.getText(), 0)));
 				}
 				if(lastViewed == 'W') {
-					updateTable(s.binarySearch(search.getText().trim(), getWidgets(), 'W', new Widget(search.getText(), 0)));
+					try {
+					updateTable(s.binarySearch(search.getText().trim(), getWidgets(), 'W', new Widget("000", Integer.parseInt(search.getText()))));
+					}
+					catch(NumberFormatException e) {
+						throw new FormatException("Please enter a valid integer.");
+					}
 				}
 			}
 			catch(FormatException e) {
@@ -127,33 +137,39 @@ public class SickNastyUI extends GBFrame {
 			if(lastViewed == 'E') {
 				updateTable(getEmployees());
 			}
-			selSort.setEnabled(true);
-			insSort.setEnabled(true);
-			search.setEnabled(true);
-			linSearch.setEnabled(true);
-			binSearch.setEnabled(true);
+			if(list.size()>0) {
+				selSort.setEnabled(true);
+				insSort.setEnabled(true);
+				search.setEnabled(true);
+				linSearch.setEnabled(true);
+				binSearch.setEnabled(true);
+			}
 		}
 		if(item == addStu) {
 			AddDlg ad = new AddDlg(this, 1, list);
 			if(lastViewed == 'S') {
 				updateTable(getStudents());
 			}
-			selSort.setEnabled(true);
-			insSort.setEnabled(true);
-			search.setEnabled(true);
-			linSearch.setEnabled(true);
-			binSearch.setEnabled(true);
+			if(list.size()>0) {
+				selSort.setEnabled(true);
+				insSort.setEnabled(true);
+				search.setEnabled(true);
+				linSearch.setEnabled(true);
+				binSearch.setEnabled(true);
+			}
 		}
 		if(item == addWid) {
 			AddDlg ad = new AddDlg(this, 2, list);
 			if(lastViewed == 'W') {
 				updateTable(getWidgets());
 			}
-			selSort.setEnabled(true);
-			insSort.setEnabled(true);
-			search.setEnabled(true);
-			linSearch.setEnabled(true);
-			binSearch.setEnabled(true);
+			if(list.size()>0) {
+				selSort.setEnabled(true);
+				insSort.setEnabled(true);
+				search.setEnabled(true);
+				linSearch.setEnabled(true);
+				binSearch.setEnabled(true);
+			}
 		}
 		if(item == pop) {
 			try {

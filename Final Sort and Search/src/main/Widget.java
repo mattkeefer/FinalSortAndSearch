@@ -47,10 +47,10 @@ public class Widget implements Comparable {
 	}
 	
 	public int compareTo(Object obj) {
-		if(numSold>((Widget)(obj)).getNumSold()) {
+		if(getNumSold()>((Widget)(obj)).getNumSold()) {
 			return -1;
 		}
-		if(numSold<((Widget)(obj)).getNumSold()) {
+		if(getNumSold()<((Widget)(obj)).getNumSold()) {
 			return 1;
 		}
 		return 0;
@@ -63,7 +63,12 @@ public class Widget implements Comparable {
 		return out;
 	}
 	
-	public boolean equals(String s) {
-		return s.equals(prodNum);
+	public boolean equals(String s) throws FormatException {
+		try {
+			return Integer.parseInt(s) == getNumSold();
+		}
+		catch(NumberFormatException e) {
+			throw new FormatException("Please enter a valid integer.");
+		}
 	}
 }
